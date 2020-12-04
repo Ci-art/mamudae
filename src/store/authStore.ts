@@ -35,7 +35,7 @@ export class AuthStore {
     try {
       this.isLoading = true;
       const auth = await firebase.auth();
-      await auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+      await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
       await auth.signInWithEmailAndPassword(username + '@ciart.xyz', password);
     } catch (error) {
       runInAction(() => {
