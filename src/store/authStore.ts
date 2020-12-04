@@ -31,6 +31,10 @@ export class AuthStore {
     });
   }
 
+  get isLogin(): boolean {
+    return this.token ? true : false;
+  }
+
   async login(username: string, password: string) {
     try {
       this.isLoading = true;

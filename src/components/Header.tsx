@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
 
   const AuthButton = observer(() => {
     if (!authStore.isLoading) {
-      if (authStore.token) {
+      if (authStore.isLogin) {
         return (
           <Button
             color="danger"

@@ -24,14 +24,14 @@ export const LoginForm: React.FC = () => {
 
   useEffect(() => {
     const reactionDisposer = autorun(() => {
-      if (authStore.token) {
+      if (authStore.isLogin) {
         history.push(paths.HOME);
       }
     });
     return () => {
       reactionDisposer();
     };
-  }, [authStore.token, history]);
+  }, [authStore.isLogin, history]);
 
   return (
     <Container>
