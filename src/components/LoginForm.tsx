@@ -1,75 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from 'reactstrap';
-import { useHistory } from 'react-router-dom';
-import paths from '../constants/paths.json';
+import React, { useState } from 'react';
+import { Form, FormGroup, FormProps, Input, Label } from 'reactstrap';
 import { useStore } from '../store';
-import { autorun } from 'mobx';
+import { LoadingButton } from './LoadingButton';
 
-export const LoginForm: React.FC = () => {
+export interface LoginFormProps extends FormProps {
+  isLoading?: boolean;
+}
+
+export const LoginForm: React.FC<LoginFormProps> = (props) => {
   const { authStore } = useStore();
-  const history = useHistory();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    const reactionDisposer = autorun(() => {
-      if (authStore.isLogin) {
-        history.push(paths.HOME);
-      }
-    });
-    return () => {
-      reactionDisposer();
-    };
-  }, [authStore.isLogin, history]);
-
   return (
-    <Container>
-      <Card>
-        <CardHeader>로그인</CardHeader>
-        <CardBody>
-          <Form
-            onSubmit={(event) => {
-              event.preventDefault();
-              authStore.login(username, password);
-            }}
-          >
-            <FormGroup>
-              <Label for="username">아이디</Label>
-              <Input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(event) => {
-                  setUsername(event.target.value);
-                }}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="password">비밀번호</Label>
-              <Input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                }}
-              />
-            </FormGroup>
-            <Button color="primary">로그인</Button>
-          </Form>
-        </CardBody>
-      </Card>
-    </Container>
+    <Form
+      onSubmit={(event) => {
+        event.preventDefault();
+        authStore.login(username, password);
+      }}
+    >
+      <FormGroup>
+        <Label for="username">아이디</Label>
+        <Input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label for="password">비밀번호</Label>
+        <Input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        />
+      </FormGroup>
+      <LoadingButton disabled={props.isLoading}>로그인</LoadingButton>
+    </Form>
   );
 };
