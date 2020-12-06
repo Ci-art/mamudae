@@ -11,11 +11,10 @@ import { PickViewer } from './components/pickViewer';
 import { TitleBar } from './components/titleBar';
 import { Camera } from './components/camera';
 
-const app = new PIXI.Application({
+export const app = new PIXI.Application({
   width: 1920,
   height: 1080,
 });
-document.body.appendChild(app.view);
 
 WebFont.load({
   custom: {
