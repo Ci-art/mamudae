@@ -1,9 +1,12 @@
-import * as functions from 'firebase-functions';
+import functions from 'firebase-functions';
+import admin from 'firebase-admin';
+import express from 'express';
+import cors from 'cors';
 
-// Start writing Firebase Functions
-// https://firebase.google.com/docs/functions/typescript
+admin.initializeApp();
 
-export const helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info('Hello logs!', { structuredData: true });
-  response.send('Hello from Firebase!');
-});
+const app = express();
+app.use(express.json());
+app.use(cors({ origin: true }));
+
+export const api = functions.https.onRequest(app);
