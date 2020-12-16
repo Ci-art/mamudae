@@ -19,10 +19,6 @@ const Login = React.lazy(() =>
   import(/* webpackChunkName: "Login" */ './containers/Login')
 );
 
-const Draft = React.lazy(() =>
-  import(/* webpackChunkName: "Draft" */ './containers/Draft')
-);
-
 const routes: RouteConfig[] = [
   {
     component: Root,
@@ -35,10 +31,6 @@ const routes: RouteConfig[] = [
       {
         path: paths.LOGIN,
         component: Login,
-      },
-      {
-        path: paths.DRAFT,
-        component: Draft,
       },
     ],
   },

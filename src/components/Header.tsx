@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
           <NavbarBrand href="/">메무대</NavbarBrand>
           <Nav className="flex-row mr-auto" navbar>
             <NavItem>
-              <Link className="nav-link p-2" to={paths.DRAFT}>
+              <Link className="nav-link p-2" to={paths.HOME}>
                 밴픽
               </Link>
             </NavItem>
