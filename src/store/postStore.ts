@@ -42,7 +42,8 @@ export class PostStore {
   // 수정해야 함.
   onSnapshot() {
     const postRef = firebase.firestore().collection('posts');
-    return postRef.onSnapshot((snapshot) => {
+
+    const unsubscribe = postRef.onSnapshot((snapshot) => {
       snapshot.docChanges().forEach((change) => {
         runInAction(() => {
           const post = this.convertDocToPost(change.doc);
@@ -65,5 +66,12 @@ export class PostStore {
         });
       });
     });
+
+    return () => {
+      runInAction(() => {
+        unsubscribe();
+        this.posts = [];
+      });
+    };
   }
 }
