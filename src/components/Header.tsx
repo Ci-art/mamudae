@@ -1,13 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import {
-  Button,
-  Container,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavItem,
-} from 'reactstrap';
+import { Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
 import { Link, useHistory } from 'react-router-dom';
 import paths from '../constants/paths.json';
 import { useStore } from '../store';
@@ -20,25 +13,25 @@ export const Header: React.FC = () => {
     if (!authStore.isLoading) {
       if (authStore.isLogin) {
         return (
-          <Button
-            color="danger"
+          <button
+            className="px-6 py-2 rounded-full bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
             onClick={() => {
               authStore.logout();
             }}
           >
             로그아웃
-          </Button>
+          </button>
         );
       } else {
         return (
-          <Button
-            color="primary"
+          <button
+            className="px-6 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
             onClick={() => {
               history.push(paths.LOGIN);
             }}
           >
             로그인
-          </Button>
+          </button>
         );
       }
     } else {
@@ -49,7 +42,7 @@ export const Header: React.FC = () => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <Container>
+        <div className="container">
           <NavbarBrand href="/">메무대</NavbarBrand>
           <Nav className="flex-row mr-auto" navbar>
             <NavItem>
@@ -59,7 +52,7 @@ export const Header: React.FC = () => {
             </NavItem>
           </Nav>
           <AuthButton></AuthButton>
-        </Container>
+        </div>
       </Navbar>
     </div>
   );
