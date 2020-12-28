@@ -1,59 +1,42 @@
 import React from 'react';
-import { observer } from 'mobx-react-lite';
-import { Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
-import { Link, useHistory } from 'react-router-dom';
-import paths from '../constants/paths.json';
-import { useStore } from '../store';
+import { Button } from './Button';
 
-export const Header: React.FC = () => {
-  const { authStore } = useStore();
-  const history = useHistory();
+export interface HeaderProps {
+  isLoading?: boolean;
+  isLogin?: boolean;
+  onLogin?: () => void;
+  onLogout?: () => void;
+}
 
-  const AuthButton = observer(() => {
-    if (!authStore.isLoading) {
-      if (authStore.isLogin) {
+export const Header: React.FC<HeaderProps> = ({
+  isLoading = false,
+  isLogin = false,
+  ...props
+}) => {
+  const AuthButton = () => {
+    if (!isLoading) {
+      if (isLogin) {
         return (
-          <button
-            className="px-6 py-2 rounded-full bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
-            onClick={() => {
-              authStore.logout();
-            }}
-          >
-            로그아웃
-          </button>
+          <Button title="로그아웃" color="danger" onClick={props.onLogout} />
         );
       } else {
-        return (
-          <button
-            className="px-6 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
-            onClick={() => {
-              history.push(paths.LOGIN);
-            }}
-          >
-            로그인
-          </button>
-        );
+        return <Button title="로그인" onClick={props.onLogin} />;
       }
     } else {
-      return <div></div>;
+      return <></>;
     }
-  });
+  };
 
   return (
-    <div>
-      <Navbar color="light" light expand="md">
-        <div className="container">
-          <NavbarBrand href="/">메무대</NavbarBrand>
-          <Nav className="flex-row mr-auto" navbar>
-            <NavItem>
-              <Link className="nav-link p-2" to={paths.HOME}>
-                밴픽
-              </Link>
-            </NavItem>
-          </Nav>
+    <header className="bg-white border-b border-gray-200 shadow">
+      <div className="container flex items-center flex-wrap h-16">
+        <div className="flex flex-auto items-start flex-no-shrink mr-6">
+          <span>메무대</span>
+        </div>
+        <div>
           <AuthButton></AuthButton>
         </div>
-      </Navbar>
-    </div>
+      </div>
+    </header>
   );
 };

@@ -1,12 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
-import { Container } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Post } from '../components/Post';
+import paths from '../constants/paths.json';
 import { useStore } from '../store';
 
-export default function Home() {
-  const { postStore } = useStore();
+export const Home: React.FC = observer(() => {
+  const { authStore, postStore } = useStore();
+  const history = useHistory();
 
   useEffect(() => {
     const unsubscription = postStore.onSnapshot();
@@ -18,7 +20,7 @@ export default function Home() {
 
   const PostList = observer(() => {
     return (
-      <div>
+      <div className="space-y-4">
         {postStore.posts.map((value) => {
           return <Post key={value.id} data={value} />;
         })}
@@ -26,12 +28,27 @@ export default function Home() {
     );
   });
 
+  const onLogin = () => {
+    history.push(paths.LOGIN);
+  };
+
+  const onLogout = () => {
+    authStore.logout();
+  };
+
   return (
-    <div>
-      <Header />
-      <Container>
+    <>
+      <Header
+        isLoading={authStore.isLoading}
+        isLogin={authStore.isLogin}
+        onLogin={onLogin}
+        onLogout={onLogout}
+      />
+      <div className="container my-4">
         <PostList />
-      </Container>
-    </div>
+      </div>
+    </>
   );
-}
+});
+
+export default Home;
