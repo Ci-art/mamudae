@@ -4,7 +4,11 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      flex: {
+        '2': '2 2 0%',
+      },
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',

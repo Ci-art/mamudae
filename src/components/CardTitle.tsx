@@ -6,7 +6,7 @@ export const CardTitle: React.FC = (props) => {
       <h2 className="font-bold text-black text-opacity-90 text-3xl">
         {props.children}
       </h2>
-      <hr className="my-2 border-gray-200" />
+      <hr className="my-4 border-gray-200" />
     </>
   );
 };
