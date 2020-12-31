@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, FormProps, Input, Label } from 'reactstrap';
 import { useStore } from '../store';
-import { LoadingButton } from './LoadingButton';
+import { Button } from './Button';
+import { Form } from './Form';
+import { FormGroup } from './FormGroup';
+import { Input } from './Input';
 
-export interface LoginFormProps extends FormProps {
+export interface LoginFormProps {
   isLoading?: boolean;
 }
 
@@ -21,8 +23,11 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
       }}
     >
       <FormGroup>
-        <Label for="username">아이디</Label>
+        <label className="flex-1" htmlFor="username">
+          아이디
+        </label>
         <Input
+          className="flex-2"
           type="text"
           id="username"
           value={username}
@@ -32,8 +37,11 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
         />
       </FormGroup>
       <FormGroup>
-        <Label for="password">비밀번호</Label>
+        <label className="flex-1" htmlFor="password">
+          비밀번호
+        </label>
         <Input
+          className="flex-2"
           type="password"
           id="password"
           value={password}
@@ -42,7 +50,7 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
           }}
         />
       </FormGroup>
-      <LoadingButton disabled={props.isLoading}>로그인</LoadingButton>
+      <Button className="w-full" title="로그인" isLoading={props.isLoading} />
     </Form>
   );
 };

@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { LoginForm } from '../components/LoginForm';
 import { Observer } from 'mobx-react-lite';
 import { useStore } from '../store';
-import { Card, CardBody, CardHeader, Container } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import { autorun } from 'mobx';
 import paths from '../constants/paths.json';
+import { Card } from '../components/Card';
+import { CardTitle } from '../components/CardTitle';
 
 const Login: React.FC = () => {
   const { authStore } = useStore();
@@ -23,18 +24,16 @@ const Login: React.FC = () => {
   }, [authStore.isLogin, history]);
 
   return (
-    <Container>
+    <div className="container flex justify-center items-center h-screen">
       <Card>
-        <CardHeader>로그인</CardHeader>
-        <CardBody>
-          <Observer>
-            {() => {
-              return <LoginForm isLoading={authStore.isLoading} />;
-            }}
-          </Observer>
-        </CardBody>
+        <CardTitle>로그인</CardTitle>
+        <Observer>
+          {() => {
+            return <LoginForm isLoading={authStore.isLoading} />;
+          }}
+        </Observer>
       </Card>
-    </Container>
+    </div>
   );
 };
 
