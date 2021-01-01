@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from './Button';
+import { Link } from 'react-router-dom';
+import paths from '../constants/paths.json';
 
 export interface HeaderProps {
   isLoading?: boolean;
@@ -31,7 +33,12 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="bg-white border-b border-gray-200 shadow">
       <div className="container flex items-center flex-wrap h-16">
         <div className="flex flex-auto items-start flex-no-shrink mr-6">
-          <span>메무대</span>
+          <Link
+            className="font-bold text-black text-opacity-90 text-2xl"
+            to={paths.HOME}
+          >
+            메무대
+          </Link>
         </div>
         <div>
           <AuthButton></AuthButton>
