@@ -1,15 +1,8 @@
 /* eslint react/jsx-props-no-spreading: off */
 import React from 'react';
-import {
-  RouteConfig,
-  renderRoutes,
-  RouteConfigComponentProps,
-} from 'react-router-config';
+import { RouteConfig, renderRoutes } from 'react-router-config';
 import paths from './constants/paths.json';
-
-function Root({ route }: RouteConfigComponentProps) {
-  return renderRoutes(route && route.routes);
-}
+import Root from './containers/Root';
 
 const Home = React.lazy(() =>
   import(/* webpackChunkName: "Home" */ './containers/Home')
