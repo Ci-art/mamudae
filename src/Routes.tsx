@@ -12,11 +12,11 @@ function Root({ route }: RouteConfigComponentProps) {
 }
 
 const Home = React.lazy(() =>
-  import(/* webpackChunkName: "Home" */ './containers/Home')
+  import(/* webpackChunkName: "Home" */ './pages/HomePage')
 );
 
 const Login = React.lazy(() =>
-  import(/* webpackChunkName: "Login" */ './containers/Login')
+  import(/* webpackChunkName: "Login" */ './pages/LoginPage')
 );
 
 const routes: RouteConfig[] = [

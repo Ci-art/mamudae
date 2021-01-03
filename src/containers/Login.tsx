@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import { LoginForm } from '../components/LoginForm';
 import { Observer } from 'mobx-react-lite';
 import { useStore } from '../store';
@@ -9,7 +8,7 @@ import paths from '../constants/paths.json';
 import { Card } from '../components/Card';
 import { CardTitle } from '../components/CardTitle';
 
-const Login: React.FC = () => {
+export const Login: React.VFC = () => {
   const { authStore } = useStore();
   const history = useHistory();
 
@@ -26,9 +25,6 @@ const Login: React.FC = () => {
 
   return (
     <div className="container flex justify-center items-center h-screen">
-      <Helmet>
-        <title>로그인 - 메무대</title>
-      </Helmet>
       <Card>
         <CardTitle>로그인</CardTitle>
         <Observer>
@@ -40,5 +36,3 @@ const Login: React.FC = () => {
     </div>
   );
 };
-
-export default Login;
