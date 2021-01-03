@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { LoginForm } from '../components/LoginForm';
 import { Observer } from 'mobx-react-lite';
 import { useStore } from '../store';
@@ -25,6 +26,9 @@ const Login: React.FC = () => {
 
   return (
     <div className="container flex justify-center items-center h-screen">
+      <Helmet>
+        <title>로그인 - 메무대</title>
+      </Helmet>
       <Card>
         <CardTitle>로그인</CardTitle>
         <Observer>
