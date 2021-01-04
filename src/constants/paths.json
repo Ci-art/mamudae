@@ -1,4 +1,5 @@
 {
 	"HOME": "/",
+	"ADMIN": "/admin",
 	"LOGIN": "/login"
 }

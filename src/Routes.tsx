@@ -15,6 +15,10 @@ const Home = React.lazy(() =>
   import(/* webpackChunkName: "Home" */ './pages/HomePage')
 );
 
+const Admin = React.lazy(() =>
+  import(/* webpackChunkName: "Admin" */ './pages/AdminPage')
+);
+
 const Login = React.lazy(() =>
   import(/* webpackChunkName: "Login" */ './pages/LoginPage')
 );
@@ -27,6 +31,10 @@ const routes: RouteConfig[] = [
         path: paths.HOME,
         exact: true,
         component: Home,
+      },
+      {
+        path: paths.ADMIN,
+        component: Admin,
       },
       {
         path: paths.LOGIN,
