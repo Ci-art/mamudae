@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/functions';
 import config from './config';
 import 'tailwindcss/tailwind.css';
 import './index.css';

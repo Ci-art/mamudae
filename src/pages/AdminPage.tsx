@@ -1,8 +1,15 @@
+import axios from 'axios';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Header } from '../containers/Header';
 
 const AdminPage: React.FC = () => {
+  axios
+    .get('')
+    .then((value) => {
+      console.log(value);
+    });
+
   return (
     <>
       <Helmet>
