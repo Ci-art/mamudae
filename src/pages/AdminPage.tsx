@@ -1,15 +1,9 @@
-import axios from 'axios';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Admin } from '../containers/Admin';
 import { Header } from '../containers/Header';
 
 const AdminPage: React.FC = () => {
-  axios
-    .get('')
-    .then((value) => {
-      console.log(value);
-    });
-
   return (
     <>
       <Helmet>
@@ -17,6 +11,7 @@ const AdminPage: React.FC = () => {
       </Helmet>
       <Header />
       관리자
+      <Admin></Admin>
     </>
   );
 };
