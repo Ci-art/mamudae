@@ -2,11 +2,11 @@ import React from 'react';
 import { Button } from '../components/Button';
 import { Link, useHistory } from 'react-router-dom';
 import paths from '../constants/paths.json';
-import { useStore } from '../store';
 import { observer } from 'mobx-react-lite';
+import rootStore from '../store';
 
 export const Header: React.VFC = () => {
-  const { authStore } = useStore();
+  const { authStore } = rootStore;
   const history = useHistory();
 
   const onLogin = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useStore } from '../store';
+import rootStore from '../store';
 import { Button } from './Button';
 import { Form } from './Form';
 import { FormGroup } from './FormGroup';
@@ -10,7 +10,7 @@ export interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = (props) => {
-  const { authStore } = useStore();
+  const { authStore } = rootStore;
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

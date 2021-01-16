@@ -11,6 +11,7 @@ export class AuthStore {
   constructor(rootStore: RootStore) {
     makeAutoObservable(this, { rootStore: false });
     this.rootStore = rootStore;
+    this.init();
   }
 
   init() {

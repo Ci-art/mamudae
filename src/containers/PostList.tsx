@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useStore } from '../store';
+import rootStore from '../store';
 import { Post } from '../components/Post';
 
 export const PostList: React.VFC = observer(() => {
-  const { postStore } = useStore();
+  const { postStore } = rootStore;
 
   useEffect(() => {
     const unsubscription = postStore.onSnapshot();

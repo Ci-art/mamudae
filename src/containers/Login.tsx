@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { LoginForm } from '../components/LoginForm';
 import { Observer } from 'mobx-react-lite';
-import { useStore } from '../store';
 import { useHistory } from 'react-router-dom';
 import { autorun } from 'mobx';
 import paths from '../constants/paths.json';
 import { Card } from '../components/Card';
 import { CardTitle } from '../components/CardTitle';
+import rootStore from '../store';
 
 export const Login: React.VFC = () => {
-  const { authStore } = useStore();
+  const { authStore } = rootStore;
   const history = useHistory();
 
   useEffect(() => {

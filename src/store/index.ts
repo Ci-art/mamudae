@@ -1,4 +1,3 @@
-import React from 'react';
 import { AuthStore } from './authStore';
 import { PostStore } from './postStore';
 
@@ -12,5 +11,5 @@ export class RootStore {
   }
 }
 
-const storeContext = React.createContext(new RootStore());
-export const useStore = () => React.useContext(storeContext);
+const rootStore = new RootStore();
+export default rootStore;
