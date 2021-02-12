@@ -15,7 +15,7 @@ export interface User {
   uid?: string;
   email?: string;
   displayName?: string;
-  roles?: Role[];
+  roles?: {[key in Role]: boolean};
 }
 
 export class RestError extends Error {

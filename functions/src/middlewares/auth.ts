@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import admin from 'firebase-admin';
 import { RequestHandler } from 'express';
-import { RestError, Role } from '../types';
+import { RestError, Role, UserRequest } from '../types';
 
 export const authenticateHandler: RequestHandler = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -41,11 +41,7 @@ export const authorizationHandler = (options: {
   allowSameUser?: boolean;
 }): RequestHandler => {
   return (req, res, next) => {
-    const { uid, roles, email } = res.locals as {
-      uid: string;
-      roles?: Role[];
-      email?: string;
-    };
+    const { uid, roles, email } = res.locals as UserRequest;
     const { id } = req.params;
 
     if (email === functions.config().mamudae.admin.email) {
@@ -56,11 +52,13 @@ export const authorizationHandler = (options: {
       return next();
     }
 
-    roles?.forEach((role) => {
-      if (options.allowedRoles.includes(role)) {
-        return next();
-      }
-    });
+    if (roles) {
+      options.allowedRoles.forEach((role) => {
+        if (roles[role]) {
+          return next();
+        }
+      });
+    }
 
     return next(new RestError(403, '접근 권한이 없습니다!'));
   };
