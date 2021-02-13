@@ -5,7 +5,5 @@ export const useAutorun = (
   view: (r: IReactionPublic) => any,
   opts?: IAutorunOptions | undefined
 ) => {
-  useEffect(() => {
-    autorun(view, opts);
-  }, []);
+  useEffect(() => autorun(view, opts), [view, opts]);
 };
