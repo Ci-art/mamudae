@@ -1,5 +1,5 @@
 import express from 'express';
-import { createUser, getUsers } from './../controllers/users';
+import { createUser, getUsers, updateUser } from './../controllers/users';
 import {
   authenticateHandler,
   authorizationHandler,
@@ -19,6 +19,13 @@ router.post(
   authenticateHandler,
   authorizationHandler({ allowedRoles: ['admin'] }),
   createUser
+);
+
+router.patch(
+  '/:id',
+  authenticateHandler,
+  authorizationHandler({ allowedRoles: ['admin'] }),
+  updateUser
 );
 
 export default router;
