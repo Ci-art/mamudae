@@ -5,5 +5,6 @@ export const useAutorun = (
   view: (r: IReactionPublic) => any,
   opts?: IAutorunOptions | undefined
 ) => {
-  useEffect(() => autorun(view, opts), [view, opts]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => autorun(view, opts), []);
 };
