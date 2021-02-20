@@ -13,10 +13,10 @@ export const Admin: React.VFC = () => {
   const [selectUser, setSelectUser] = useState<string>();
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [{ data, loading, error }, refetch] = useFunctions<{
+  const [{ data, loading }, refetch] = useFunctions<{
     users: UserResult[];
   }>('users');
-  const [{ data: updateData, loading: updateLoading }, update] = useFunctions<{
+  const [update] = useFunctions<{
     user: UserRequest;
   }>({ method: 'PATCH' }, { manual: true });
 
