@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd packages/mamudae && yarn install --frozen-lockfile && yarn build
+      - run: cd packages/mamudae-functions && yarn install --frozen-lockfile && yarn build
         env:
           REACT_APP_API_KEY: '${{ secrets.REACT_APP_API_KEY }}'
           REACT_APP_AUTH_DOMAIN: '${{ secrets.REACT_APP_AUTH_DOMAIN }}'
