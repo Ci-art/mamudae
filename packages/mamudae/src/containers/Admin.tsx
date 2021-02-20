@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
+import { UserRequest, UserResult } from 'mamudae-functions/src/types';
 import rootStore from '../store';
-import { UserResult } from '../../functions/src/types';
 import { useAutorun } from '../hooks/useAutorun';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { useFunctions } from './../hooks/useFunctions';
-import { UserRequest } from './../../functions/src/types';
 import { Modal } from '../components/Modal';
 
 export const Admin: React.VFC = () => {
