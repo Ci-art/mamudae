@@ -1,4 +1,7 @@
-export type Role = 'admin' | 'streamer';
+export enum Role {
+  'admin',
+  'streamer',
+}
 
 export interface UserResult extends User {
   uid: string;
@@ -15,7 +18,7 @@ export interface User {
   uid?: string;
   email?: string;
   displayName?: string;
-  roles?: {[key in Role]: boolean};
+  roles?: { [key in Role]: boolean };
 }
 
 export class RestError extends Error {

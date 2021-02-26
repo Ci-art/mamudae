@@ -1,4 +1,5 @@
 import express from 'express';
+import { Role } from '../types';
 import { createUser, getUsers, updateUser } from './../controllers/users';
 import {
   authenticateHandler,
@@ -10,21 +11,21 @@ const router = express.Router();
 router.get(
   '/',
   authenticateHandler,
-  authorizationHandler({ allowedRoles: ['admin'] }),
+  authorizationHandler({ allowedRoles: [Role.admin] }),
   getUsers
 );
 
 router.post(
   '/',
   authenticateHandler,
-  authorizationHandler({ allowedRoles: ['admin'] }),
+  authorizationHandler({ allowedRoles: [Role.admin] }),
   createUser
 );
 
 router.patch(
   '/:id',
   authenticateHandler,
-  authorizationHandler({ allowedRoles: ['admin'] }),
+  authorizationHandler({ allowedRoles: [Role.admin] }),
   updateUser
 );
 
