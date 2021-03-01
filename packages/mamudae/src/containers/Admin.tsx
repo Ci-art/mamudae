@@ -5,7 +5,7 @@ import { useAutorun } from '../hooks/useAutorun';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { useFunctions } from './../hooks/useFunctions';
-import { Modal } from '../components/Modal';
+import { UserRolesModal } from '../components/UserRolesModal';
 
 export const Admin: React.VFC = () => {
   const { authStore } = rootStore;
@@ -16,7 +16,7 @@ export const Admin: React.VFC = () => {
   const [{ data, loading }, refetch] = useFunctions<{
     users: UserResult[];
   }>('users');
-  const [update] = useFunctions<{
+  const [{ data: updateData, loading: updateLoading }, update] = useFunctions<{
     user: UserRequest;
   }>({ method: 'PATCH' }, { manual: true });
 
@@ -28,28 +28,21 @@ export const Admin: React.VFC = () => {
 
   return (
     <>
-      <Modal visible={modalVisible}>
-        {JSON.stringify(
-          data?.users.find((user) => {
-            return user.uid === selectUser;
-          })?.roles
-        )}
-        <Button
-          title="확인"
-          onClick={() =>
-            update({
-              url: `users/${selectUser}`,
-              data: { roles: { admin: true } },
-            })
-          }
-        ></Button>
-        <Button
-          title="닫기"
-          onClick={() => {
-            setModalVisible(false);
-          }}
-        ></Button>
-      </Modal>
+      <UserRolesModal
+        user={data?.users.find((user) => {
+          return user.uid === selectUser;
+        })}
+        visible={modalVisible}
+        onConfirm={() =>
+          update({
+            url: `users/${selectUser}`,
+            data: { roles: { admin: true } },
+          })
+        }
+        onClose={() => {
+          setModalVisible(false);
+        }}
+      />
       <div className="container">
         {loading || !data?.users ? (
           <p className="fixed m-auto">로딩 중</p>
