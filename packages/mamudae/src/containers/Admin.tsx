@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UserRequest, UserResult } from 'mamudae-functions/src/types';
+import { UserRequest, UserResult } from 'mamudae-core';
 import rootStore from '../store';
 import { useAutorun } from '../hooks/useAutorun';
 import { Card } from '../components/Card';

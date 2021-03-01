@@ -1,0 +1,25 @@
+{
+  "name": "mamudae-core",
+  "version": "0.1.0",
+  "description": "> TODO: description",
+  "author": "Pdom <ahb0327@naver.com>",
+  "homepage": "https://github.com/Ci-art/mamudae#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ci-art/mamudae.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "bugs": {
+    "url": "https://github.com/Ci-art/mamudae/issues"
+  }
+}

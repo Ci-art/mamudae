@@ -1,7 +1,15 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build --stream",
+    "watch": "lerna run watch --parallel",
+    "deploy": "lerna run deploy --stream --scope=mamudae-functions"
+  },
   "devDependencies": {
     "lerna": "^3.22.1"
   }

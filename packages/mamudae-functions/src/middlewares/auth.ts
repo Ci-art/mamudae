@@ -1,7 +1,8 @@
 import * as functions from 'firebase-functions';
 import admin from 'firebase-admin';
 import { RequestHandler } from 'express';
-import { RestError, Role, UserRequest } from '../types';
+import { Role, UserRequest } from 'mamudae-core';
+import { RestError } from '../errors';
 
 export const authenticateHandler: RequestHandler = async (req, res, next) => {
   const { authorization } = req.headers;

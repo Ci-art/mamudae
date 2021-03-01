@@ -1,5 +1,5 @@
 import express from 'express';
-import { Role } from '../types';
+import { Role } from 'mamudae-core';
 import { createUser, getUsers, updateUser } from './../controllers/users';
 import {
   authenticateHandler,

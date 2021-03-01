@@ -20,17 +20,3 @@ export interface User {
   displayName?: string;
   roles?: { [key in Role]: boolean };
 }
-
-export class RestError extends Error {
-  status: number;
-
-  constructor(status: number, message?: string) {
-    super(message);
-
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, RestError);
-    }
-
-    this.status = status;
-  }
-}

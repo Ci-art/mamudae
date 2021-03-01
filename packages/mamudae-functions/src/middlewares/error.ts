@@ -1,6 +1,6 @@
 import { ErrorRequestHandler } from 'express';
 import { FirebaseError } from 'firebase-admin';
-import { RestError } from '../types';
+import { RestError } from '../errors';
 
 export const restErrorHandler: ErrorRequestHandler = (
   error,

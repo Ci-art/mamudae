@@ -1,7 +1,8 @@
 import { RequestHandler } from 'express';
 import admin from 'firebase-admin';
 import { UserRecord } from 'firebase-functions/lib/providers/auth';
-import { RestError, UserRequest, UserResult } from '../types';
+import { UserRequest, UserResult } from 'mamudae-core';
+import { RestError } from '../errors';
 
 const mapUser = (user: UserRecord) => {
   return {

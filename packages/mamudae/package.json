@@ -20,6 +20,7 @@
     "axios": "^0.21.1",
     "axios-hooks": "^2.3.0",
     "firebase": "^8.1.1",
+    "mamudae-core": "^0.1.0",
     "mamudae-functions": "^0.1.0",
     "mobx": "^6.0.4",
     "mobx-react-lite": "^3.1.6",
@@ -41,6 +42,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
+    "watch": "craco start",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
