@@ -3,6 +3,10 @@ export enum Role {
   'streamer',
 }
 
+export interface RoleData {
+  value: boolean
+}
+
 export interface UserResult extends User {
   uid: string;
   lastSignInTime: string;
@@ -18,5 +22,5 @@ export interface User {
   uid?: string;
   email?: string;
   displayName?: string;
-  roles?: { [key in Role]: boolean };
+  roles?: RoleData[];
 }

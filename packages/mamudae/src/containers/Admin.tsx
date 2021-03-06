@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UserRequest, UserResult } from 'mamudae-core';
+import { UserRequest, UserResult, Role } from 'mamudae-core';
 import rootStore from '../store';
 import { useAutorun } from '../hooks/useAutorun';
 import { Card } from '../components/Card';
@@ -16,7 +16,7 @@ export const Admin: React.VFC = () => {
   const [{ data, loading }, refetch] = useFunctions<{
     users: UserResult[];
   }>('users');
-  const [{ data: updateData, loading: updateLoading }, update] = useFunctions<{
+  const [, update] = useFunctions<{
     user: UserRequest;
   }>({ method: 'PATCH' }, { manual: true });
 
@@ -33,11 +33,11 @@ export const Admin: React.VFC = () => {
           return user.uid === selectUser;
         })}
         visible={modalVisible}
-        onConfirm={() =>
+        onConfirm={(value) =>
           update({
             url: `users/${selectUser}`,
-            data: { roles: { admin: true } },
-          })
+            data: { roles: value },
+          }).then(refetch)
         }
         onClose={() => {
           setModalVisible(false);
@@ -54,7 +54,15 @@ export const Admin: React.VFC = () => {
           return (
             <Card key={value.uid}>
               <p>이메일: {value.email}</p>
-              <p>역할: {JSON.stringify(value.roles)}</p>
+              <p>
+                역할:
+                {(() => {
+                  if (!value.roles || !Array.isArray(value.roles)) {
+                    return <></>;
+                  }
+                  return value.roles.filter((role) => role.value === true).map((role, index) => <p key={index}>{Role[index]}</p>);
+                })()}
+              </p>
               <Button
                 title="역할 변경"
                 onClick={() => {
